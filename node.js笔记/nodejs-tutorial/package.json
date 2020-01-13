@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-tutorial",
+  "version": "1.0.0",
+  "repository": "https://github.com/lipengzhou/nodejs-tutorial.git",
+  "author": "lipengzhou <lpzmail@163.com>",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.24.0",
+    "vuepress": "^1.0.0-alpha.32"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "start": "npm run docs:dev"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.0.0-alpha.0",
+    "@vuepress/plugin-medium-zoom": "^1.0.0-alpha.0"
+  }
+}
