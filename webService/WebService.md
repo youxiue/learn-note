@@ -1,12 +1,12 @@
 # WebService
 
-## 概念
+## 1. 概念
 
 1. WebService是两个系统的远程调用，是两个系统进行数据交互，如应用：天气预报服务、银行ATM取款、使用邮箱账号登录个网站。
 2. WebService之间的调用是可以跨语言调用的。Java、.Net、php等，发送Http请求，使用的数据格式是XML格式。
 3. 一个免费的WebService服务网站：http://www.webxml.com.cn/zh_cn/index.aspx
 
-## 专业名词
+## 2. 专业名词
 
 1. SOAP：Simple Object Access Protocol(简单对象访问协议)
 
@@ -31,7 +31,7 @@
      - xmlns ="http://test.cn" 使用默认的命名空间。
      - xmlns:test ="http://test.cn" 使用指定名称的命名空间
 
-## wsdl文档结构
+## 3. wsdl文档结构
 
 ![image-20200206175055885](./img/image-20200206175055885.png)
 
@@ -245,9 +245,9 @@
 </wsdl:definitions>
 ```
 
-## 基本使用
+## 4. 基本使用
 
-### 如何发布webService
+### 4.1 如何发布webService
 
 ```java
 /*
@@ -283,7 +283,7 @@ public class UserDao {
   Endpoint.publish("http://localhost:8989/userDao",new UserDao());
 ```
 
-### 如何请求webService
+### 4.2 如何请求webService
 
 #### **1. 生成客户端调用方式** 
 
@@ -558,11 +558,11 @@ public class HttpURLConectionMode {
 </html> 
 ```
 
-### CXF
+## 5 CXF
 
 > Apache CXF 是一个开源的 WebService 框架，CXF可以用来构建和开发  WebService，这些服务可以支持多种协议，比如：SOAP、POST/HTTP、HTTP ，CXF  大大简化了WebService并且可以天然地和 Spring 进行无缝集成。CXF是 Celtrix （ESB框架）和  XFire（webserivice） 合并而成，核心是org.apache.cxf.Bus(总线)，类似于Spring的  ApplicationContext，CXF默认是依赖于Spring的，另 CXF 发行包中的jar，如果全部放到lib中，需要 JDK1.6  及以上，否则会报JAX-WS版本不一致的问题。CXF 内置了Jetty服务器 ，它是servlet容器。
 
-#### 依赖maven坐标
+### 5.1 依赖maven坐标
 
 ```java
 // 服务器jar包
@@ -589,7 +589,7 @@ public class HttpURLConectionMode {
 </dependency>
 ```
 
-#### CXF拦截器
+### 5.2 CXF拦截器
 
 ```java
 // 1. 服务端拦截器
@@ -619,7 +619,7 @@ User userById = userDaoPort.getUserById(1);
 System.out.println(userById.getName());
 ```
 
-#### 自定义拦截器
+### 5.3 自定义拦截器
 
 1. 服务端拦截器
 
