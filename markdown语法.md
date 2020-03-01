@@ -128,11 +128,11 @@ public class DsWorkflowNode implements Serializable{
 ![图2][flower]
 ```
 
-![我的图片](E:\360downloads\324815.jpg)
+![我的图片](G:\学习笔记\learn-note\wolf.png)
 
 ![图二][flower]
 
-[flower]:E:\360downloads\325607.jpg	"图二"
+[flower]:G:\学习笔记\learn-note\girlbook.jpg	"图二"
 
 
 
@@ -143,9 +143,12 @@ public class DsWorkflowNode implements Serializable{
 这是一个[百度](https://www.baidu.com)链接
 // 2. 参考式链接
 我经常去的几个网站[百度][1],[哔哩哔哩][2]以及[CSDN][]  
+[1]:http://www.baidu.com	"百度"
+[2]:http://www.bilibili.com	"哔哩哔哩"
+[CSDN]:https://www.csdn.net
 // 3. 自动链接         
 <http://www.baidu.com>
-<youxiue@qq.com>         
+<youxiue@qq.com>       
 ```
 
 ### 行内式链接
