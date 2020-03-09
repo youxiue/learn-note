@@ -94,6 +94,7 @@ git init
 
 1. 查看工作区,暂存区 状态命令: `git status`
 2. 添加到暂存区的命令: `git add [fileName]`
+   - 添加全部: `git add .`   
 3. 移除暂存区的命令: `git rm -cached [fileName]`
 4. 从暂存区提交到本地库: 
    - `git commit [fileName]` , 然后会进入提交信息描述编辑页面
@@ -178,15 +179,24 @@ git reflog
 分支操作:
 
 1. 创建分支
-   - git branch [分支名]
-
+   
+- git branch [分支名]
+  
 2. 查看分支
-   - git branch -v
-
+   
+- git branch -v
+  
 3. 切换分支
-   - git checkout [分支名]
+   
+- git checkout [分支名]
+   - git switch [分支名]
+   
+4. 创建并切换分支
 
-4. 合并分支
+   - `git checkout -b [分支名]`命令加上`-b`参数表示创建并切换, 相当于执行了 创建命令和切换命令
+- `git switch -c [分支名]`
+  
+5. 合并分支
 
    - 第一步: 切换到接收修改的分支( 被合并, 增加新内容 ) 上
 
@@ -196,7 +206,7 @@ git reflog
 
      git merge [存在新内容的分支]
 
-5. 解决分支
+6. 解决冲突
 
    - 冲突的表现
 
@@ -208,7 +218,9 @@ git reflog
      - 第三步: git commit -m "日志信息"
        - 注意: **此时commit 不能带文件名**
 
-
+6. 删除分支
+   
+   - `git branch -d [分支名称]`
 
 ## 3. git原理
 
@@ -239,25 +251,52 @@ git底层采用的是 SHA-1 算法,哈希算法可以被用来验证文件是否
 
 
 
-建立本地库和远程库的链接
+## 4.远程仓库
 
-git remote -v
+1. 查看关联远程库信息
 
-git remote add origin https://github.com/youxiue/learn-note.git 
+   `git remote -v`
 
-​	origin 即是后面地址的别名 
+2. 建立本地库和远程库的关联
 
-git push origin master 
+   - `git remote add origin https://github.com/youxiue/learn-note.git` 
+   - origin 即是后面地址的别名 
 
-​	意思是推送到origin地址的 master 分支
+3. 推送到远程库
+
+   - 第一次推送：`git push -u origin master` 
+     - 由于远程库是空的，我们第一次推送`master`分支时，加上了`-u`参数，Git不但会把本地的`master`分支内容推送的远程新的`master`分支，还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。
+     - 意思是推送到origin地址的 master 分支
+- 如果推送到远端 一个没有的分支, 远端将会自动创建该分支 例:`git push -u origin login`
+     - 如果远端已经存在该分支, 则需要建立 分支间的联系`git push --set-upstream origin login`
+     
+   - 后续推送：`git push origin master` 
 
 
 
-克隆
+4. 从远程库克隆
+   - 命令：git clone https://github.com/youxiue/learn-note.git 
+   - 完整的把远程库下载到本地
+   - 创建origin 远程地址别名
+   - 初始化本地库
 
-- 命令：git clone https://github.com/youxiue/learn-note.git 
+5. 远程库的拉取
 
-- 完整的把远程库下载到本地
-- 创建origin 远程地址别名
-- 初始化本地库
+   > `git fetch`是将远程主机的最新内容拉到本地，用户在检查了以后决定是否合并到工作本机分支中。
+   >
+   > 而`git pull` 则是将远程主机的最新内容拉下来后直接合并，即：`git pull = git fetch + git merge`，这样可能会产生冲突，需要手动解决。
 
+   - `get fetch [远程库地址别名] [远程分支名]`
+   - `git merge [远程库地址别名/远程分支名]`
+   - git pull
+     - 将远程主机的某个分支的更新取回，并与本地指定的分支合并: `git pull <远程主机名> <远程分支名>:<本地分支名>`
+     - 远程分支是与当前分支合并: `git pull <远程主机名> <远程分支名>`
+
+6. 协同开发冲突的解决
+
+   要点:
+
+   - 如果不是基于GitHub远程哭的最新版所做的修改, 不能推送, 必须先拉取
+   - 拉取下来后如果进入冲突状态, 则按照 分支冲突解决 操作即可.
+
+   
